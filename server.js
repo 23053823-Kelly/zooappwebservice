@@ -67,7 +67,7 @@ app.post('/updateanimal', async (req, res) => {
             [animal_name, animal_pic, animal_description, idzoo]
         );
 
-        res.status(201).json({message: 'Animal'+animal_name+' added successfully.'});
+        res.status(201).json({message: 'Animal'+idzoo+' added successfully.'});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update animal' });
