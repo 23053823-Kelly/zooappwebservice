@@ -55,7 +55,7 @@ app.post('/addanimal',async (req,res)=>{
 
 //update route using post function
 app.post('/updateanimal', async (req, res) => {
-    const { id, animal_name, animal_pic, animal_description } = req.body;
+    const { idzoo, animal_name, animal_pic, animal_description } = req.body;
 
     try {
         let connection = await mysql.createConnection(dbConfig);
@@ -71,7 +71,7 @@ app.post('/updateanimal', async (req, res) => {
             return res.status(404).json({ message: 'Animal not found' });
         }
 
-        res.json({ message: 'Animal with ID ${id} updated successfully.' });
+        res.json({ message: 'Animal ${animal_name} updated successfully.' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update animal' });
@@ -111,25 +111,23 @@ app.get('/deleteanimal/:idzoo', async (req, res) => {
 
 
 //delete using post function
-app.post('/deleteanimal/:idzoo', async (req, res) => {
-    const { idzoo } = req.params;
+app.post('/deleteanimal', async (req, res) => {
+    const { idzoo } = req.body;
 
     try {
-        const connection = await mysql.createConnection(dbConfig);
+        let connection = await mysql.createConnection(dbConfig);
 
         const [result] = await connection.execute(
-            'DELETE FROM zoo WHERE idzoo = ?',
+            'DELETE FROM defaultdb.zoo WHERE idzoo = ?',
             [idzoo]
         );
 
         if (result.affectedRows === 0) {
-            return res.status(404).json({
-                message: 'Animal not found'
-            });
+            return res.status(404).json({ message: 'Animal not found' });
         }
 
         res.json({
-            message: 'Animal with ID ${id} deleted successfully.'
+            message: `Animal with ID ${idzoo} deleted successfully.`
         });
     } catch (err) {
         console.error(err);
@@ -138,4 +136,5 @@ app.post('/deleteanimal/:idzoo', async (req, res) => {
         });
     }
 });
+
 
