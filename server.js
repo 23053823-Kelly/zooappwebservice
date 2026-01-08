@@ -44,7 +44,7 @@ app.post('/addanimal',async (req,res)=>{
     const {animal_name, animal_pic ,animal_description} =req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('INSERT INTO zoo (animal_name, animal_pic,animal_description) VALUES (?,?,?)',[animal_name,anmial_pic,animal_description]);
+        await connection.execute('INSERT INTO defaultdb.zoo (animal_name, animal_pic, animal_description) VALUES (?,?,?)',[animal_name,animal_pic,animal_description]);
         res.status(201).json({message: 'Animal'+animal_name+' added successfully.'});
     } catch (err) {
         console.error(err);
