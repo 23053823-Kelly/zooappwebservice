@@ -71,7 +71,7 @@ app.post('/updateanimal', async (req, res) => {
             return res.status(404).json({ message: 'Animal not found' });
         }
 
-        res.json({ message: 'Animal ${animal_name} updated successfully.' });
+        res.json({ message: `Animal ${animal_name} updated successfully.` });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update animal' });
