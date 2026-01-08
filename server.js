@@ -35,20 +35,20 @@ app.get('/allzooinfo',async (req,res)=>{
         res.json(rows)
     } catch (err) {
         console.log(err);
-        res.status(500).json({message:'Server error for allcards'});
+        res.status(500).json({message:'Server error for all the animal infomation'});
     }
 });
 
 //Example route: create a new card
 app.post('/addanimal',async (req,res)=>{
-    const {card_name, card_pic} =req.body;
+    const {animal_name, animal_pic ,animal_description} =req.body;
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute('INSERT INTO zoo (animal_name, animal_pic,animal_description) VALUES (?,?,?)',[animal_name,anmial_pic,animal_description]);
-        res.status(201).json({message: 'Card'+animal_name+' added successfully.'});
+        res.status(201).json({message: 'Animal'+animal_name+' added successfully.'});
     } catch (err) {
         console.error(err);
-        res.status(500).json({message:'Server error - could not add card'+animal_name});
+        res.status(500).json({message:'Server error - could not add this animal'+animal_name});
     }
 
 });
