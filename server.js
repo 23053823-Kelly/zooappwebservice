@@ -67,11 +67,7 @@ app.post('/updateanimal', async (req, res) => {
             [animal_name, animal_pic, animal_description, idzoo]
         );
 
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Animal not found' });
-        }
-
-        res.json({ message: `Animal ${animal_name} updated successfully.` });
+        res.status(201).json({message: 'Animal'+animal_name+' added successfully.'});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update animal' });
@@ -86,7 +82,6 @@ app.post('/updateanimal', async (req, res) => {
 
 
 //delete using get function
-// DELETE animal (GET)
 app.get('/deleteanimal/:idzoo', async (req, res) => {
     const { idzoo } = req.params;
 
