@@ -67,7 +67,7 @@ app.post('/updateanimal', async (req, res) => {
             [animal_name, animal_pic, animal_description, idzoo]
         );
 
-        res.status(201).json({message: 'Animal'+animal_name+' updated successfully.'});
+        res.status(201).json({message: 'Animal id '+idzoo+' updated successfully.'});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not update animal' });
@@ -93,7 +93,7 @@ app.get('/deleteanimal/:idzoo', async (req, res) => {
             [idzoo]
         );
 
-        res.status(201).json({message: 'Animal'+animal_name+' deleted successfully.'});
+        res.status(201).json({message: 'Animal id '+idzoo+' deleted successfully.'});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error - could not delete animal' });
@@ -113,7 +113,7 @@ app.post('/deleteanimal', async (req, res) => {
             [idzoo]
         );
 
-        res.status(201).json({message: 'Animal'+animal_name+' deleted successfully.'});
+        res.status(201).json({message: 'Animal id '+idzoo+' deleted successfully.'});
     } catch (err) {
         console.error(err);
         res.status(500).json({
